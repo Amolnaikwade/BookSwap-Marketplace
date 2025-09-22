@@ -1,0 +1,118 @@
+/* Full-page flexbox center */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #74ebd5, #9face6);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Centered card */
+.login-card {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  transition: 0.3s ease-in-out;
+}
+
+/* Title */
+.app-title {
+  margin-bottom: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Subtitle */
+.subtitle {
+  margin-bottom: 20px;
+  font-size: 15px;
+  color: #666;
+}
+
+/* Input fields */
+input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: #6c63ff;
+  box-shadow: 0px 0px 6px rgba(108, 99, 255, 0.5);
+  outline: none;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  background: #6c63ff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #574bdb;
+}
+
+/* Message */
+.message {
+  margin-top: 15px;
+  font-size: 14px;
+  color: green;
+  font-weight: bold;
+}
+
+/* ✅ Responsive adjustments */
+@media (max-width: 768px) {
+  .login-card {
+    padding: 25px 20px;
+    max-width: 90%;
+  }
+
+  .app-title {
+    font-size: 22px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  input,
+  button {
+    font-size: 13px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-wrapper {
+    padding: 10px;
+  }
+
+  .login-card {
+    padding: 20px 15px;
+    border-radius: 10px;
+  }
+
+  .app-title {
+    font-size: 20px;
+  }
+}

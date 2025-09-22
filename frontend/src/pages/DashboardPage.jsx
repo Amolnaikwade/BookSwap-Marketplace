@@ -46,12 +46,29 @@ const DashboardPage = ({ token }) => {
   }, []);
 
   return (
-    <div className="container">
-      <h1>Dashboard</h1>
-      <BookForm token={token} setMessage={setMessage} />
-      <BookList books={books} setMessage={setMessage} refreshBooks={fetchBooks} />
-      <MyBooks myBooks={myBooks} />
-      <MyRequests requests={myRequests} />
+    <div className="dashboard-container">
+      <h1 className="dashboard-title">BookSwap Dashboard</h1>
+      
+      <div className="section">
+        <h2 className="section-title">Add a New Book</h2>
+        <BookForm token={token} setMessage={setMessage} />
+      </div>
+
+      <div className="section">
+        <h2 className="section-title">Available Books</h2>
+        <BookList books={books} setMessage={setMessage} refreshBooks={fetchBooks} />
+      </div>
+
+      <div className="section">
+        <h2 className="section-title">My Books</h2>
+        <MyBooks myBooks={myBooks} />
+      </div>
+
+      <div className="section">
+        <h2 className="section-title">My Requests</h2>
+        <MyRequests requests={myRequests} />
+      </div>
+
       <Message message={message} />
     </div>
   );
