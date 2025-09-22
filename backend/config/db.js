@@ -1,9 +1,8 @@
-// MongoDB connection setup
 const mongoose = require("mongoose");
 
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb+srv://bookswapUser:BookSwap123!@cluster0.qfw3o.mongodb.net/bookswap?retryWrites=true&w=majority", {
+    await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

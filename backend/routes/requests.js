@@ -10,7 +10,6 @@ router.post("/:bookId", auth, async (req, res) => {
     const book = await Book.findById(req.params.bookId);
     if (!book) return res.status(404).json({ msg: "Book not found" });
 
-    // Check if user already requested
     const existing = await Request.findOne({ book: book._id, requester: req.user.id });
     if (existing) return res.status(400).json({ msg: "You already requested this book" });
 
@@ -21,10 +20,6 @@ router.post("/:bookId", auth, async (req, res) => {
     });
 
     await request.save();
-
-    // Optionally, attach request info to book for frontend
-    book.requested = request;
-    await book.save();
 
     res.json({ msg: "Request sent", request });
   } catch (err) {

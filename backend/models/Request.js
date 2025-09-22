@@ -1,6 +1,7 @@
+// routes/requests.js
 const express = require("express");
 const router = express.Router();
-const auth = require("../middleware/auth"); // JWT auth middleware
+const auth = require("../middleware/auth"); // JWT authentication middleware
 const Request = require("../models/Request"); // Request model
 const Book = require("../models/Book");       // Book model
 
@@ -15,14 +16,14 @@ router.post("/:bookId", auth, async (req, res) => {
     if (!book) return res.status(404).json({ msg: "Book not found" });
 
     // Check if user already requested this book
-    const existingRequest = await Request.findOne({ 
-      book: book._id, 
-      requester: req.user.id 
+    const existingRequest = await Request.findOne({
+      book: book._id,
+      requester: req.user.id,
     });
-    if (existingRequest) 
+    if (existingRequest)
       return res.status(400).json({ msg: "You already requested this book" });
 
-    // Create a new request
+    // Create new request
     const request = new Request({
       book: book._id,
       requester: req.user.id,
@@ -31,7 +32,7 @@ router.post("/:bookId", auth, async (req, res) => {
 
     await request.save(); // Save request to DB
 
-    res.json({ msg: "Request sent", request });
+    res.json({ msg: "Request sent successfully", request });
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: "Server error" });
