@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// Backend URL from environment variable
-export const backendURL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+// Backend URL from Vite environment variable
+export const backendURL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 // Axios instance
 const api = axios.create({
