@@ -1,31 +1,28 @@
-// server.js
-require("dotenv").config(); // Load environment variables from .env
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const connectDB = require('./config/db');
+const authRoutes = require('./routes/auth');
+const bookRoutes = require('./routes/books');
+const requestRoutes = require('./routes/requests');
 
-const express = require("express");
-const connectDB = require("./config/db"); // DB connection
-const cors = require("cors"); // Allow cross-origin requests
-
-const app = express();
-
-// Connect Database
-connectDB();
+const app = express(); // <-- initialize app first
 
 // Middleware
-app.use(cors()); // Enable CORS
-app.use(express.json()); // Parse JSON bodies
+app.use(cors());
+app.use(express.json());
+
+// Connect to MongoDB
+connectDB(process.env.MONGODB_URI);
 
 // Routes
-app.use("/api/auth", require("./routes/authRoutes")); // Auth routes
-app.use("/api/books", require("./routes/bookRoutes")); // Book routes
-app.use("/api/requests", require("./routes/requestRoutes")); // Book request routes
+app.use('/api/auth', authRoutes);
+app.use('/api/books', bookRoutes);
+app.use('/api/requests', requestRoutes); // <-- now it works
 
-// Default route
-app.get("/", (req, res) => {
-  res.send("📚 BookSwap API is running...");
-});
+// Test route
+app.get('/', (req, res) => res.send('BookSwap API'));
 
 // Start server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () =>
-  console.log(`🚀 Server running on http://localhost:${PORT}`)
-);
+app.listen(PORT, () => console.log(`Server running on ${PORT}`));
