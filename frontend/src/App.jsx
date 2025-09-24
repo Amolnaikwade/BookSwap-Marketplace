@@ -1,27 +1,24 @@
-import "./App.css"; // ← Add this at the top
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { useState } from "react";
-import LoginPage from "./pages/LoginPage";
-import DashboardPage from "./pages/DashboardPage";
+import { Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import BookDetail from './pages/BookDetail'
+import AddBook from './pages/AddBook'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Header from './components/Header'
 
-function App() {
-  const [token, setToken] = useState("");
-
+export default function App(){
   return (
-    <Router>
-      <Routes>
-        <Route
-          path="/login"
-          element={token ? <Navigate to="/dashboard" /> : <LoginPage setToken={setToken} />}
-        />
-        <Route
-          path="/dashboard"
-          element={token ? <DashboardPage token={token} /> : <Navigate to="/login" />}
-        />
-        <Route path="*" element={<Navigate to="/login" />} />
-      </Routes>
-    </Router>
-  );
+    <div>
+      <Header />
+      <main style={{ padding: 20 }}>
+        <Routes>
+          <Route path='/' element={<Home/>} />
+          <Route path='/book/:id' element={<BookDetail/>} />
+          <Route path='/add' element={<AddBook/>} />
+          <Route path='/login' element={<Login/>} />
+          <Route path='/register' element={<Register/>} />
+        </Routes>
+      </main>
+    </div>
+  )
 }
-
-export default App;

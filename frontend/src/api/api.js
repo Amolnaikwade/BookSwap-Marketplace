@@ -1,17 +1,10 @@
-import axios from "axios";
+import axios from 'axios';
 
-// Backend URL from Vite environment variable
-export const backendURL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API = axios.create({ baseURL: import.meta.env.VITE_API_BASE || 'http://localhost:5000/api' });
 
-// Axios instance
-const api = axios.create({
-  baseURL: backendURL,
-});
-
-// Set JWT token for authenticated requests
 export const setAuthToken = (token) => {
-  if (token) api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  else delete api.defaults.headers.common["Authorization"];
+  if (token) API.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  else delete API.defaults.headers.common['Authorization'];
 };
 
-export default api;
+export default API;
